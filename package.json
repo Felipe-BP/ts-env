@@ -1,0 +1,51 @@
+{
+    "name": "ts-env",
+    "version": "1.0.0",
+    "description": "A simple utility package to help you with type-safe usage of process.env in Node",
+    "main": "main.ts",
+    "bin": "./bin/ts-env.ts",
+    "scripts": {
+        "prepare": "husky install",
+        "start": "ts-node bin/ts-env.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "engines": {
+        "node": ">=18.13.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Felipe-BP/ts-env.git"
+    },
+    "keywords": [
+        "typescript",
+        "node",
+        "environment-variables",
+        "process.env"
+    ],
+    "author": "Felipe-BP",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Felipe-BP/ts-env/issues"
+    },
+    "homepage": "https://github.com/Felipe-BP/ts-env#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^17.5.1",
+        "@commitlint/config-conventional": "^17.4.4",
+        "@types/node": "^18.15.11",
+        "@typescript-eslint/eslint-plugin": "^5.57.1",
+        "@typescript-eslint/parser": "^5.57.1",
+        "eslint": "^8.37.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.3"
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx}": [
+            "eslint --fix"
+        ]
+    },
+    "dependencies": {
+        "dotenv": "^16.0.3"
+    }
+}
