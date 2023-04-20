@@ -1,13 +1,12 @@
 import ts from "typescript";
-import { writeFileSync } from "node:fs";
 
 type Params = {
-    outPath: string;
+    fileName: string;
     envObj: Record<string, string>;
 }
 
-export function generateCodeFromEnvKeys({ outPath, envObj }: Params): void {
-    const outFile = ts.createSourceFile(outPath!, "", ts.ScriptTarget.ESNext, false, ts.ScriptKind.TS);
+export function generateCodeFromEnvKeys({ fileName, envObj }: Params): string {
+    const outFile = ts.createSourceFile(fileName, "", ts.ScriptTarget.ESNext, false, ts.ScriptKind.TS);
     const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
 
     const nodes = Object.keys(envObj).map(envKey => ts.factory.createPropertyDeclaration(
@@ -38,7 +37,5 @@ export function generateCodeFromEnvKeys({ outPath, envObj }: Params): void {
         ts.NodeFlags.Namespace
     );
 
-    const result = printer.printNode(ts.EmitHint.Unspecified, nodeJSNamespaceDecl, outFile);
-
-    writeFileSync(outPath!, result, { flag: 'w' });
+    return printer.printNode(ts.EmitHint.Unspecified, nodeJSNamespaceDecl, outFile);
 }

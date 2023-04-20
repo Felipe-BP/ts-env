@@ -2,6 +2,8 @@
 
 import { readFileSync } from "fs";
 import { parseArgs } from "node:util";
+import { writeFileSync } from "node:fs";
+import { basename } from "node:path";
 
 import { parse as parseEnv } from "dotenv";
 
@@ -23,7 +25,9 @@ function bootstrap(): void {
         readFileSync(".env")
     );
 
-    generateCodeFromEnvKeys({ outPath: outPath!, envObj });
+    const code = generateCodeFromEnvKeys({ fileName: basename(outPath!), envObj });
+
+    writeFileSync(outPath!, code, { flag: 'w' });
 }
 
 bootstrap();
